@@ -6,8 +6,9 @@ static NSString *const kEventsChannel = @"uni_links/events";
 @interface UniLinksPlugin () <FlutterStreamHandler>
 @property(nonatomic, copy) NSString *initialLink;
 @property(nonatomic, copy) NSString *latestLink;
-BOOL initialLoad = YES;
 @end
+
+BOOL initialLoad = YES;
 
 @implementation UniLinksPlugin {
   FlutterEventSink _eventSink;
