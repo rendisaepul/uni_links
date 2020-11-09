@@ -54,7 +54,7 @@ static id _instance;
   NSURL *url = (NSURL *)launchOptions[UIApplicationLaunchOptionsURLKey];
   self.initialLink = [url absoluteString];
   self.latestLink = self.initialLink;
-  self.initialLoad = NO;
+  initialLoad = NO;
   return YES;
 }
 
@@ -82,7 +82,7 @@ static id _instance;
   if ([@"getInitialLink" isEqualToString:call.method]) {
     result(self.initialLink);
   } else if ([@"getInitialLoad" isEqualToString:call.method]) {
-    result(self.initialLoad);
+    result(initialLoad);
   } else {
     result(FlutterMethodNotImplemented);
   }
