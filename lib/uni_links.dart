@@ -30,6 +30,11 @@ Future<Uri> getInitialUri() async {
   return Uri.parse(link);
 }
 
+Future<bool> getInitialLoad() async {
+  final initialLoad = await _mChannel.invokeMethod<bool>('getInitialLoad');
+  return initialLoad;
+}
+
 /// Sets up a broadcast stream for receiving incoming link change events.
 ///
 /// Returns a broadcast [Stream] which emits events to listeners as follows:

@@ -110,6 +110,8 @@ public class UniLinksPlugin
             result.success(initialLink);
         } else if (call.method.equals("getLatestLink")) {
             result.success(latestLink);
+        } else if (call.method.equals("getInitialLoad")) {
+            result.success(initialIntent);
         } else {
             result.notImplemented();
         }
