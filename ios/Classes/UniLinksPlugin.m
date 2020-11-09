@@ -6,9 +6,8 @@ static NSString *const kEventsChannel = @"uni_links/events";
 @interface UniLinksPlugin () <FlutterStreamHandler>
 @property(nonatomic, copy) NSString *initialLink;
 @property(nonatomic, copy) NSString *latestLink;
+@property(assign, nonatomic) BOOL initialLoad;
 @end
-
-BOOL initialLoad = YES;
 
 @implementation UniLinksPlugin {
   FlutterEventSink _eventSink;
@@ -17,6 +16,7 @@ BOOL initialLoad = YES;
 static id _instance;
 
 + (UniLinksPlugin *)sharedInstance {
+  self.initialLoad = NO;
   if (_instance == nil) {
     _instance = [[UniLinksPlugin alloc] init];
   }
@@ -54,7 +54,7 @@ static id _instance;
   NSURL *url = (NSURL *)launchOptions[UIApplicationLaunchOptionsURLKey];
   self.initialLink = [url absoluteString];
   self.latestLink = self.initialLink;
-  initialLoad = NO;
+  self.initialLoad = YES;
   return YES;
 }
 
@@ -82,7 +82,7 @@ static id _instance;
   if ([@"getInitialLink" isEqualToString:call.method]) {
     result(self.initialLink);
   } else if ([@"getInitialLoad" isEqualToString:call.method]) {
-    result(initialLoad);
+    result(self.initialLoad);
   } else {
     result(FlutterMethodNotImplemented);
   }
